@@ -1,7 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import { useState } from 'react';
 
-function App() {
+// Components
+import InvestmentList from './InvestmentList';
+
+import '../Styles/App.css';
+
+function App(props) {
+
+  const [investments, setinvestments] = useState([]);
+
+  // Functions
+  const test = (event) => {
+    console.log("This is a test function.");
+
+    event.preventDefault();
+  }
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -21,7 +36,7 @@ function App() {
         </div>
 
         {/* Form to add an Investment */}
-        <form action="" className="row">
+        <form action="" className="row" onSubmit={test}>
           
           {/* Ticker Symbol */}
           <div className="col">
@@ -37,7 +52,7 @@ function App() {
 
           {/* Shares */}
           <div className="col">
-            <label htmlFor="costPerShare" className="form-label">Cost Per Share</label>
+            <label htmlFor="costPerShare" className="form-label">Shares</label>
             <input id="costPerShare" type="text" className="form-control" />
           </div>
 
@@ -47,7 +62,15 @@ function App() {
             <button className="form-control btn btn-primary">Add Investment</button>
           </div>
         </form>
+      
+        <hr />
+
+        <InvestmentList investments={ [1,2,3,4] }/>
+
       </div>
+      
+      
+
       
     </div>
   );
