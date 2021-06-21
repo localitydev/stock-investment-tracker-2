@@ -2,7 +2,6 @@ import React from 'react';
 
 const InvestmentCard = (props) => {
 
-
     return (
         <div className="card row mt-2 mb-2">
             <div className="card-body" style={{"padding":"12px"}}>

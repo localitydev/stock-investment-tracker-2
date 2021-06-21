@@ -29,8 +29,6 @@ const InvestmentList = (props) => {
         } )}
 
       </div>
-
-
     </div>
 	);
 }
