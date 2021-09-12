@@ -30,19 +30,16 @@ function App(props) {
 
         <div className="row">
           <div className="col">
-            <InvestmentForm setInvestment={setInvestments} />
+            <InvestmentForm investments={investments} setInvestments={setInvestments} />
           </div>
         </div>
       
-        <hr />
+        <hr /> 
 
         <InvestmentList investments={ investments }/>
 
       </div>
-      
-      
 
-      
     </div>
   );
 }

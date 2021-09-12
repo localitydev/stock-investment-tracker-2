@@ -6,6 +6,32 @@ const InvestmentList = (props) => {
 
 	return(
     <div id="InvestmentList">
+      <h2>Active Investments</h2>
+
+      <table className="table table-striped">
+          <thead>
+              <tr>
+                  <th>Ticket Symbol</th>
+                  <th className="text-end">Shares</th>
+                  <th className="text-end">Current Value</th>
+                  <th className="text-end">Total Investment</th>
+                  <th className="text-end">Profit/Loss</th>
+                  <th className="text-end">Percent Growth</th>
+              </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                  <td>AMC</td>
+                  <td className="text-end">10</td>
+                  <td className="text-end">$<input className="text-end" type="text" /></td>
+                  <td className="text-end">$500</td>
+                  <td className="text-end">$118.42</td>
+                  <td className="text-end">5.93%</td>
+              </tr>
+          </tbody>
+      </table>
+
       <div className="row mt-5">
         <div className="col">
           <h2>Investments</h2>
@@ -24,8 +50,8 @@ const InvestmentList = (props) => {
       {/* Card List of Investments */}
       <div className="container-fluid">
 
-        {props.investments.map( (investment, key) => {
-          return (<InvestmentCard investment={investment} key={key} />)
+        {props.investments.map( (stock, key) => {
+          return (<InvestmentCard stock={stock} key={key} />)
         } )}
 
       </div>
