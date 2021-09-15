@@ -8,7 +8,24 @@ import '../Styles/App.css';
 
 function App(props) {
 
-  const [investments, setInvestments] = useState([]);
+  const [investments, setInvestments] = useState([
+    {
+      "tickerSymbol": "AMC",
+      "company": "AMC Entertainment",
+      "avgSharePrice": 54.92,
+      "pnl": 42.21,
+      "totalGrowth": 12.4,
+      "totalShares": 15.4673325,
+      "totalInvestment": 1223.63,
+      "investments": [
+          {
+              "purchaseDate": "",
+              "shares": 1.667468,
+              "sharePrice": 49.96,
+              "investmentTotal": 83.30
+          }
+      ]
+  }]);
 
   return (
     <div className="App">

@@ -1,12 +1,13 @@
 import React from 'react';
 
-import InvestmentCard from './InvestmentCard';
+import InvestmentRow from './InvestmentRow';
 
 const InvestmentList = (props) => {
 
 	return(
     <div id="InvestmentList">
-      <h2>Active Investments</h2>
+    {/* Furture Development */}
+      {/* <h2>Portfolio</h2>
 
       <table className="table table-striped">
           <thead>
@@ -24,13 +25,13 @@ const InvestmentList = (props) => {
               <tr>
                   <td>AMC</td>
                   <td className="text-end">10</td>
-                  <td className="text-end">$<input className="text-end" type="text" /></td>
-                  <td className="text-end">$500</td>
+                  <td className="text-end">$100.00</td>
+                  <td className="text-end">$500.00</td>
                   <td className="text-end">$118.42</td>
                   <td className="text-end">5.93%</td>
               </tr>
           </tbody>
-      </table>
+      </table> */}
 
       <div className="row mt-5">
         <div className="col">
@@ -44,15 +45,15 @@ const InvestmentList = (props) => {
           <div className="col text-end">Shares</div>
           <div className="col text-end">Total Cost</div>
           <div className="col text-end">Avg Per Share</div>
-          <div className="col text-end">Gains</div>
+          {/* <div className="col text-end">Gains</div> */}
       </div>
 
       {/* Card List of Investments */}
       <div className="container-fluid">
 
         {props.investments.map( (stock, key) => {
-          return (<InvestmentCard stock={stock} key={key} />)
-        } )}
+          return (<InvestmentRow stock={stock} key={key} />)
+        })}
 
       </div>
     </div>

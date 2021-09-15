@@ -23,10 +23,10 @@ const InvestmentForm = (props) => {
         ]
     });
 
-    // const [tickerSymbol, setTickerSymbol]   = useState(""),
-    //     [costPerShare, setCostPerShare]   = useState(""),
-    //     [shares, setShares]               = useState("")
-    // ;
+    const [tickerSymbol, setTickerSymbol]   = useState(""),
+        [costPerShare, setCostPerShare]   = useState(""),
+        [shares, setShares]               = useState("")
+    ;
 
 
     // Functions
@@ -68,7 +68,7 @@ const InvestmentForm = (props) => {
 
                 {/* Cost Per Share */}
                 <div className="col">
-                    <label htmlFor="costPerShare" className="form-label">Cost Per Share</label>
+                    <label htmlFor="costPerShare" className="form-label">Price Per Share</label>
                     <input id="costPerShare"  type="text" className="form-control" />
                 </div>
 
@@ -87,6 +87,5 @@ const InvestmentForm = (props) => {
         </React.Fragment>
     );
 }
-
 
 export default InvestmentForm;
