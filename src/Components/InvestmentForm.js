@@ -23,22 +23,24 @@ const InvestmentForm = (props) => {
         ]
     });
 
-    const [tickerSymbol, setTickerSymbol]   = useState(""),
-        [costPerShare, setCostPerShare]   = useState(""),
-        [shares, setShares]               = useState("")
+    const   [ticker, setTicker]                 = useState(""),
+            [pricePerShare, setPricePerShare]   = useState(""),
+            [shares, setShares]                 = useState("")
     ;
 
 
     // Functions
+
+    /**
+     * [Add $investment to AirTable]
+     *
+     * @param   {[type]}  event  [event description]
+     *
+     * @return  {[type]}         [return description]
+     */
     const addInvestment = (event) => {
         console.log("Adding Investment", props);
         
-        // Search Investments for the investment I am adding
-        let foundInvestmentObj = props.investments.find( obj => {
-            console.log("Investment Found:", obj.tickerSymbol === tickerSymbol);
-            return obj.tickerSymbol === tickerSymbol;
-        });
-
         // If found, add to that object
         // Else Create a new object
 
@@ -49,24 +51,35 @@ const InvestmentForm = (props) => {
 
     // EVENT FUNCTIONS
     const onTickerChange = useCallback((event) => {
-        console.log( "Ticker Symbol", event.target.value );
-        setTickerSymbol(event.target.value.toUpperCase()) }
-        , []);
+        console.log( "Ticker Change:", event.target.value );
+        setTicker(event.target.value.toUpperCase())
+    }, []);
 
-    
+    // EVENT FUNCTIONS
+    const onPricePerShareChange = useCallback((event) => {
+        console.log( "Price Per Share Change:", event.target.value );
+        setTicker(event.target.value.toUpperCase())
+    }, []);
+
+    // EVENT FUNCTIONS
+    const onShareChange = useCallback((event) => {
+        console.log( "Share Change:", event.target.value );
+        setTicker(event.target.value.toUpperCase())
+    }, []);
+
 
     return (
         <React.Fragment>
             {/* Form to add an Investment */}
             <form action="" className="row" onSubmit={addInvestment}>
                 
-                {/* Ticker Symbol */}
+                {/* Ticker */}
                 <div className="col">
-                    <label htmlFor="ticketSymbol" className="form-label">Ticker Symbol</label>
-                    <input id="tickerSymbol" onChange={onTickerChange} type="text" className="form-control" />
+                    <label htmlFor="ticketSymbol" className="form-label">Ticker</label>
+                    <input id="ticker" onChange={onTickerChange} type="text" className="form-control" />
                 </div>
 
-                {/* Cost Per Share */}
+                {/* Price Per Share */}
                 <div className="col">
                     <label htmlFor="costPerShare" className="form-label">Price Per Share</label>
                     <input id="costPerShare"  type="text" className="form-control" />
@@ -78,12 +91,12 @@ const InvestmentForm = (props) => {
                     <input id="shares"  type="text" className="form-control" />
                 </div>
 
-                {/* Shares */}
+                {/* Submit Investment */}
                 <div className="col">
                     <label htmlFor="" className="form-label">&nbsp;</label>
                     <button className="form-control btn btn-primary">Add Investment</button>
                 </div>
-            </form>
+            </form> 
         </React.Fragment>
     );
 }
