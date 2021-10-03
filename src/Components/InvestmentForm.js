@@ -11,43 +11,11 @@ const InvestmentForm = (props) => {
             [purchaseDate, setPurchaseDate]     = useState("")
     ;
 
-    
 
-
-    // Functions
-
-    /**
-     * [Add $investment to AirTable]
-     *
-     * @param   {[type]}  event  [event description]
-     *
-     * @return  {[type]}         [return description]
-     */
     const addInvestment = (event) => {
         console.log("Adding Investment");
         
-        var Airtable = require('airtable');
-        var base = new Airtable({apiKey: 'key5zCnOJlaW1bsmL'}).base('appzgacf8InjioTH3');
-
-        base('investments').create([
-        {
-            "fields": {
-                "price_per_share": pricePerShare,
-                "shares": shares,
-                "ticker_symbol": ticker,
-                "purchase_date": purchaseDate
-            }
-        }
-        ], function(err, records) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            records.forEach(function (record) {
-                console.log(record.getId());
-            });
-        });
-
+        
         event.preventDefault();
     }
 
