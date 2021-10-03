@@ -5,28 +5,13 @@ import { useCallback } from 'react';
 
 const InvestmentForm = (props) => {
 
-    const [investment, setInvestment] = useState({
-        "tickerSymbol": "AMC",
-        "company": "AMC Entertainment",
-        "avgSharePrice": 54.92,
-        "pnl": 42.21,
-        "totalGrowth": 12.4,
-        "totalShares": 15.4673325,
-        "totalInvestment": 1223.63,
-        "investments": [
-            {
-                "purchaseDate": "",
-                "shares": 1.667468,
-                "sharePrice": 49.96,
-                "investmentTotal": 83.30
-            }
-        ]
-    });
-
     const   [ticker, setTicker]                 = useState(""),
             [pricePerShare, setPricePerShare]   = useState(""),
-            [shares, setShares]                 = useState("")
+            [shares, setShares]                 = useState(""),
+            [purchaseDate, setPurchaseDate]     = useState("")
     ;
+
+    
 
 
     // Functions
@@ -39,12 +24,29 @@ const InvestmentForm = (props) => {
      * @return  {[type]}         [return description]
      */
     const addInvestment = (event) => {
-        console.log("Adding Investment", props);
+        console.log("Adding Investment");
         
-        // If found, add to that object
-        // Else Create a new object
+        var Airtable = require('airtable');
+        var base = new Airtable({apiKey: 'key5zCnOJlaW1bsmL'}).base('appzgacf8InjioTH3');
 
-        
+        base('investments').create([
+        {
+            "fields": {
+                "price_per_share": pricePerShare,
+                "shares": shares,
+                "ticker_symbol": ticker,
+                "purchase_date": purchaseDate
+            }
+        }
+        ], function(err, records) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            records.forEach(function (record) {
+                console.log(record.getId());
+            });
+        });
 
         event.preventDefault();
     }
@@ -52,19 +54,22 @@ const InvestmentForm = (props) => {
     // EVENT FUNCTIONS
     const onTickerChange = useCallback((event) => {
         console.log( "Ticker Change:", event.target.value );
-        setTicker(event.target.value.toUpperCase())
+        setTicker(event.target.value.toUpperCase());
     }, []);
 
-    // EVENT FUNCTIONS
     const onPricePerShareChange = useCallback((event) => {
         console.log( "Price Per Share Change:", event.target.value );
-        setTicker(event.target.value.toUpperCase())
+        setPricePerShare(event.target.value.toUpperCase());
     }, []);
 
-    // EVENT FUNCTIONS
     const onShareChange = useCallback((event) => {
         console.log( "Share Change:", event.target.value );
-        setTicker(event.target.value.toUpperCase())
+        setShares(event.target.value.toUpperCase());
+    }, []);
+
+    const onDateChange = useCallback((event) => {
+        console.log( "Share Change:", event.target.value );
+        setPurchaseDate(event.target.value.toUpperCase());
     }, []);
 
 
@@ -72,6 +77,12 @@ const InvestmentForm = (props) => {
         <React.Fragment>
             {/* Form to add an Investment */}
             <form action="" className="row" onSubmit={addInvestment}>
+
+                {/*DatePicker*/}
+                <div className="col">
+                    <label htmlFor="ticketSymbol" className="form-label">Ticker</label>
+                    <input id="purchaseDate" onChange={onDateChange} type="date" className="form-control" />
+                </div>
                 
                 {/* Ticker */}
                 <div className="col">
@@ -82,13 +93,13 @@ const InvestmentForm = (props) => {
                 {/* Price Per Share */}
                 <div className="col">
                     <label htmlFor="costPerShare" className="form-label">Price Per Share</label>
-                    <input id="costPerShare"  type="text" className="form-control" />
+                    <input id="costPerShare" onChange={onPricePerShareChange} type="text" className="form-control" />
                 </div>
 
                 {/* Shares */}
                 <div className="col">
                     <label htmlFor="shares" className="form-label">Shares</label>
-                    <input id="shares"  type="text" className="form-control" />
+                    <input id="shares" onChange={onShareChange} type="text" className="form-control" />
                 </div>
 
                 {/* Submit Investment */}
