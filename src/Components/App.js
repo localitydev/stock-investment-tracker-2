@@ -11,7 +11,7 @@ function App(props) {
 
   // AirTable CONSTANTS
   var Airtable = require('airtable');
-  var base = new Airtable({apiKey: process.env.REACT_APP_AIRTABLE_API_KEY}).base(REACT_APP_AIRTABLE_BASE);
+  var base = new Airtable({apiKey: process.env.REACT_APP_AIRTABLE_API_KEY}).base(process.env.REACT_APP_AIRTABLE_BASE);
 
   const [investments, setInvestments] = useState([
     {
